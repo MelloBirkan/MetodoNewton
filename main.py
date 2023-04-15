@@ -23,7 +23,19 @@ def newton(f, u, epsilon, N0=100):
     # Se o método não convergir em N0 iterações, retorna None
     return None
 
+
+def resolver_equacao(f, ponto_inicial, ep, raiz_string):
+  raiz = newton(f, ponto_inicial, ep)  # Encontra a raiz de f1() com ponto inicial 1 e tolerância 1e-6
+  if raiz is not None:
+      print(f"A raiz de {raiz_string} é:", raiz)  # Imprime a raiz encontrada para f1
+  else:
+      print("O método não convergiu para uma raiz de f")  # Imprime uma mensagem se o método não convergir para f1
+  # Imprimindo a tolerância utilizada
+  print(f"Tolerância utilizada:{ep}\n")  # Imprime a tolerância utilizada
+
 def main():
+  # EXERCICIO 1 (
+  
     # Definindo as funções que se deseja encontrar raízes
     def f1(x):
         return x**3 + 4*x**2 - 10  # Função f1(x) = x^3 + 4x^2 - 10
@@ -32,21 +44,13 @@ def main():
         return math.cos(x) - x  # Função f2(x) = cos(x) - x
     
     # Encontrando as raízes de f1 e f2 utilizando o método de Newton
-    raiz1 = newton(f1, 1, 1e-6)  # Encontra a raiz de f1() com ponto inicial 1 e tolerância 1e-6
-    raiz2 = newton(f2, 1, 1e-6)  # Encontra a raiz de f2() com ponto inicial 1 e tolerância 1e-6
+    resolver_equacao(f1, 1, 1e-1, "x**3 + 4*x**2 - 10")  # Encontra a raiz de f1() com ponto inicial 1 e tolerância 1e-6
+    resolver_equacao(f2, 1, 1e-1, "cos(x) - x")  # Encontra a raiz de f2() com ponto inicial 1 e tolerância 1e-6
     
-    # Imprimindo os resultados
-    if raiz1 is not None:
-        print("A raiz de f1 é:", raiz1)  # Imprime a raiz encontrada para f1
-    else:
-        print("O método não convergiu para uma raiz de f1")  # Imprime uma mensagem se o método não convergir para f1
     
-    if raiz2 is not None:
-        print("\nA raiz de f2 é:", raiz2)  # Imprime a raiz encontrada para f2
-    else:
-        print("O método não convergiu para uma raiz de f2")  # Imprime uma mensagem se o método não convergir para f2
     
-    # Imprimindo a tolerância utilizada
-    print("\nTolerância utilizada:", 1e-6)  # Imprime a tolerância utilizada
-
+  
+    
+  
+#)
 main()  # Executa a função main()
