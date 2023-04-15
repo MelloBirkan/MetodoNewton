@@ -66,17 +66,20 @@ def main():
     
     def fd(x):
         # Função fd(x) = 𝑒𝑥 -3x2
-        return 2.71828 - 3*x**2
+        return 2.71828**x - 3*x**2
 
 # Encontrando as raízes de a,b,c e d utilizando o método de Newton
     print("A)")
-    resolver_equacao(f1, 1, 1e-3, "x**3 + 4*x**2 - 10")
+    resolver_equacao(f1, 1, 1e-4, "x**3 + 4*x**2 - 10")
     print("B)")
-    resolver_equacao(f2, 1, 1e-3, "cos(x) - x")
+    resolver_equacao(f2, 1, 1e-4, "cos(x) - x")
     print("C)")
-    resolver_equacao(fc, 1, 1e-3, "x**3 - 2*x**2 - 5")
+    resolver_equacao(fc, 1, 1e-4, "x**3 - 2*x**2 - 5")
     print("D)")
-    resolver_equacao(fd, 1, 1e-3, "x**3 - 2*x**2 - 5")
+    resolver_equacao(fd, 1, 1e-4, "e**x - 3*x**2")
 #)
+# EXERCICIO 3 (
+    print("\nEXERCICIO 3:")
+  
 main()  # Executa a função main()
 
