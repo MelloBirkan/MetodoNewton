@@ -40,6 +40,41 @@ def resolver_equacao(f, ponto_inicial, ep, raiz_string):
     # Imprime a tolerância utilizada
     print(f"Tolerância utilizada:{ep}\n")  
 
+#Contem outros criterios de parada ultilizados para respodender a 3.
+def newtonEx3(f, u, epsilon, criterio_parada, N0=100):
+    def df(x):
+        h = 1e-6
+        return (f(x + h) - f(x - h)) / (2 * h)
+
+    for i in range(N0):
+        du = f(u) / df(u)
+        v = u - du
+
+        if criterio_parada == 1:
+            criterio = abs(v - u) < epsilon
+        elif criterio_parada == 2:
+            criterio = abs(f(v)) < epsilon
+        else:
+            criterio = abs(v - u) / abs(v) < epsilon
+
+        if criterio:
+            return v, i + 1
+
+        u = v
+
+    return None, N0
+
+def resolver_equacaoEx3(f, ponto_inicial, ep, raiz_string, criterio_parada):
+    raiz, iteracoes = newtonEx3(f, ponto_inicial, ep, criterio_parada)
+    if raiz is not None:
+        print(f"A raiz de {raiz_string} é:", raiz)
+        print(f"O método convergiu em {iteracoes} iterações com o critério de parada {criterio_parada}")
+    else:
+        print("O método não convergiu para uma raiz de f")
+    print(f"Tolerância utilizada:{ep}\n")
+
+
+
 def main():
   # EXERCICIO 1 (
     print("EXERCICIO 1:")
@@ -80,6 +115,8 @@ def main():
 #)
 # EXERCICIO 3 (
     print("\nEXERCICIO 3:")
-  
+    for criterio_parada in range(1, 4):
+        resolver_equacaoEx3(f1, 1, 1e-4, "x**3 + 4*x**2 - 10", criterio_parada)
+        resolver_equacaoEx3(fd, 1, 1e-4, "e**x - 3*x**2", criterio_parada)
 main()  # Executa a função main()
 
